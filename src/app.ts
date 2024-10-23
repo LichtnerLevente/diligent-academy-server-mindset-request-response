@@ -41,13 +41,7 @@ export default function createApp(options = {}) {
 
     const condiments: string[] = [];
     if (milk === "yes") {
-      if (dietary === "lactose-intolerance") {
-        condiments.push("lf-milk")
-      } else if (dietary === "vegan") {
-        condiments.push("oat-milk")
-      } else {
-        condiments.push("milk")
-      }
+      condiments.push(chooseMilk(dietary))
     }
     if (sugar === "yes") {
       condiments.push("sugar")
@@ -61,6 +55,16 @@ export default function createApp(options = {}) {
     reply.send({ drink: beverage, with: condiments });
   })
 
+  function chooseMilk(dietary?: string) {
+    switch (dietary) {
+      case "vegan":
+        return "oat-milk";
+      case "lactose-intolerance":
+        return "lf-milk";
+      default:
+        return "milk";
+    }
+  }
 
 
 
