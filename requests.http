@@ -3,3 +3,10 @@
 ###
 
 GET {{host}}/api/hello
+###
+
+GET {{host}}/api/good-bye
+###
+
+POST {{host}}/api/beverages/tea
+

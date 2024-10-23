@@ -5,11 +5,34 @@
 Answer the following questions:
 
 - A good start to understand the repo is to check the `package.json`. What is the HTTP server library used here? What development tools are configured? 
+  fastify
+  "devDependencies": {
+    "@types/jest": "^29.5.13",
+    "@types/node": "^22.7.4",
+    "jest": "^29.7.0",
+    "jest-each": "^29.7.0",
+    "nodemon": "^3.1.7",
+    "rimraf": "^6.0.1",
+    "ts-jest": "^29.2.5",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.6.2"
+  }
+
 - What does the following scripts do? `dev`, `test`
+  
 - What is the entry point of the server?
+  server.ts
+
 - What do you think why is the `app.ts` and the `server.ts` are separated? 
+in the app there are the endpoints, the server.ts starts the server
+thez are separeted for better testability
+
 - If you would create a new endpoint in which file would you put it?
+  app.ts
+  
 - In the tests which method simulates the HTTP request?
+  .inject
+  
 - What do you think what does the `ts-node` package do?
 
 ## Task 2: Meet with Fastify
