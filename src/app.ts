@@ -40,18 +40,23 @@ export default function createApp(options = {}) {
     const dietary = request.headers['codecool-beverages-dietary'];
 
     const condiments: string[] = chooseCondiments(milk, sugar, dietary);
+
     let statusCode: 201 | 418;
     if(beverage !== "chai" && beverage !== "tea"){
       statusCode = 418;
     } else {
       statusCode = 201;
     }
+    
+    let beverageDescription: string;
 
     if (kind) {
-      reply.status(statusCode).send({ drink: `${kind} ${beverage}`, with: condiments });
+      beverageDescription = `${kind} ${beverage}`
+    } else {
+      beverageDescription = beverage;
     }
 
-    reply.status(statusCode).send({ drink: beverage, with: condiments });
+    reply.status(statusCode).send({ drink: beverageDescription, with: condiments });
   })
 
   function chooseCondiments(milk?: "yes" | "no", sugar?: "yes" | "no", dietary?: "vegan" | "lactose-intolerance"){
