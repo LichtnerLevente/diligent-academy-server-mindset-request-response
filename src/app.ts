@@ -13,7 +13,7 @@ export default function createApp(options = {}) {
   })
 
 
-  type PostBeverageRouteWithStaffRoute = {
+  type PostBeverageRoute = {
     Headers: {
       "CodeCool-Beverages-Dietary"?: "vegan" | "lactose-intolerance";
     }
@@ -31,7 +31,7 @@ export default function createApp(options = {}) {
 
   }
 
-  app.post<PostBeverageRouteWithStaffRoute>('/api/beverages/:beverage', (request, reply) => {
+  app.post<PostBeverageRoute>('/api/beverages/:beverage', (request, reply) => {
     const { beverage } = request.params;
 
     const milk = request.query.milk;
@@ -48,13 +48,7 @@ export default function createApp(options = {}) {
       statusCode = 201;
     }
     
-    let beverageDescription: string;
-
-    if (kind) {
-      beverageDescription = `${kind} ${beverage}`
-    } else {
-      beverageDescription = beverage;
-    }
+    const beverageDescription: string = kind ? `${kind} ${beverage}` : beverage;
 
     reply.status(statusCode).send({ drink: beverageDescription, with: condiments });
   })
